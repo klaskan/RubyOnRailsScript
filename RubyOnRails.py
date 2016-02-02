@@ -16,7 +16,7 @@ def add_to_git(mappe, navnProsjekt, kommentar_git, link_github):
 	os.system("%s" % link_github)
 	os.system("git push -u origin master")
 	
-def rails_generate_controller(mappe, navnProsjekt, generate, action, options):
+def rails_generate_controller(mappe, navnProsjekt, action, options):
 	os.chdir(("%s/%s") % (mappe, navnProsjekt))
 	os.system("rails generate controller %s %s" % (action, options))
 
@@ -41,8 +41,9 @@ else:
 
 gencon = raw_input("Vil du generer en controller? y/n : ")
 if gencon == "y":
-
-	rails_generate_controller()
+	ac = raw_input("action: ")
+	op = raw_input("options (dette kan være flerer sider, bare husk mellomrom mellom dem: ")
+	rails_generate_controller(m, n, ac, op )
 
 else:
 	print "kk"
