@@ -30,12 +30,18 @@ def git_log(mappe, navnProsjekt):
 		True
 	#her kan du sette tilbake til tidligere versjoner med aa skrive "git reset 1cfef3e9" de random tallene og bokstavene er de 8 forste tall/bokstaver i commit-id
 
+def commit_add_push(mappe, navnProsjekt, kommentar_git):
+	os.system("git status")
+	os.system("git add .")
+	os.system("git commit -am'%s'" % kommentar_git)
+	os.system("git push -u origin master")
 
 
 one = "1. Lag nytt Ruby on rails Prosjekt"
 two = "2. Legg til 'git' i nytt prosjektet."
 tree = "3. Generer en controller" 
 four = "4. Se git log/ gaa tilbake til tidligere versjon"
+five = "5. commit og push"
 m = ""
 n = ""
 
@@ -46,6 +52,7 @@ while True:
 	print two
 	print tree 
 	print four
+	print five
 	newpro = raw_input("Tall: ")
 
 	if newpro == "1":
@@ -83,8 +90,8 @@ while True:
 			op = raw_input("options (dette kan vare flerer sider, bare husk mellomrom mellom dem: ")
 			rails_generate_controller(m, n, ac, op ) 
 			True
+	
 	elif newpro == "4":
-		
 		if len(m) == 0 or len(n) == 0:  
 			m = raw_input("Hvor skal jeg lagre prosjektet? eks /Users/Klaskan/Documents/RailsPro ")
 			n = raw_input("Navn Prosjekt: ")
@@ -92,6 +99,19 @@ while True:
 		else:
 			git_log(m, n)
 
+	elif newpro == "5":
+		
+		if len(m) == 0 or len(n) == 0 or len(a) == 0:  
+			m = raw_input("Hvor skal jeg lagre prosjektet? eks /Users/Klaskan/Documents/RailsPro ")
+			n = raw_input("Navn Prosjekt: ")
+			a = raw_input("kommentar paa commit: ")
+			commit_add_push(m, n, a)
+		else:
+			commit_add_push(m, n, a)
+
 	else:
 		print "Det du skrev inn er ikke stottet"
 		True
+
+
+
