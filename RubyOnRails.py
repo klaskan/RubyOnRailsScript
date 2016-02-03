@@ -20,32 +20,78 @@ def rails_generate_controller(mappe, navnProsjekt, action, options):
 	os.chdir(("%s/%s") % (mappe, navnProsjekt))
 	os.system("rails generate controller %s %s" % (action, options))
 
-def git_log():
+def git_log(mappe, navnProsjekt):
 	os.system("git log")
-	#her kan du sette tilbake til tidligere versjoner med å skrive "git reset 1cfef3e9" de random tallene og bokstavene er de 8 første tall/bokstaver i commit-id
+	backTrack = raw_input("onsker du aa gaa tilbake til en tidligere versjon y/n ")
+	if backTrack == "y":
+		tidligereGit = raw_input("Git-IDen: ")
+		os.system("git checkout %s" % tidligereGit)		 	
+	else:
+		True
+	#her kan du sette tilbake til tidligere versjoner med aa skrive "git reset 1cfef3e9" de random tallene og bokstavene er de 8 forste tall/bokstaver i commit-id
 
 
 
-newpro = raw_input("Vil du lage et nytt prosjektet? y/n : ")
-if newpro == "y":
-	m = raw_input("Hvor skal jeg lagre prosjektet? eks /Users/Klaskan/Documents/RailsPro ")
-	n = raw_input("Navn Prosjekt: ")
-	start_prosjekt_rails(m,n)
+one = "1. Lag nytt Ruby on rails Prosjekt"
+two = "2. Legg til 'git' i nytt prosjektet."
+tree = "3. Generer en controller" 
+four = "4. Se git log/ gaa tilbake til tidligere versjon"
+m = ""
+n = ""
 
-	a = raw_input("kommentar paa commit: ")
-	webbrowser.open("https://github.com/")
-	b = raw_input("Link github: ")
-	add_to_git(m, n, a, b)
-else:
-	print "kk"
+while True:
+	
+	print "Hva vil du? Skriv inn tallet."
+	print one
+	print two
+	print tree 
+	print four
+	newpro = raw_input("Tall: ")
 
+	if newpro == "1":
+		m = raw_input("Hvor skal jeg lagre prosjektet? eks /Users/Klaskan/Documents/RailsPro ")
+		n = raw_input("Navn Prosjekt: ")
+		start_prosjekt_rails(m,n)
+		True
 
+	elif newpro == "2":
+		if len(m) == 0 or len(n) == 0:  
+			m = raw_input("Hvor skal jeg lagre prosjektet? eks /Users/Klaskan/Documents/RailsPro ")
+			n = raw_input("Navn Prosjekt: ")
+			a = raw_input("kommentar paa commit: ")
+			webbrowser.open("https://github.com/")
+			b = raw_input("Link github: ")
+			add_to_git(m, n, a, b)
+			True
+		else:
+			a = raw_input("kommentar paa commit: ")
+			webbrowser.open("https://github.com/")
+			b = raw_input("Link github: ")
+			add_to_git(m, n, a, b)
+			True
 
-gencon = raw_input("Vil du generer en controller? y/n : ")
-if newpro == "y":
-	ac = raw_input("action: ")
-	op = raw_input("options (dette kan være flerer sider, bare husk mellomrom mellom dem: ")
-	rails_generate_controller(m, n, ac, op )
-elif: 
-else:
-	print "kk"
+	elif newpro == "3":
+		if len(m) == 0 or len(n) == 0:
+			m = raw_input("Hvor skal jeg lagre prosjektet? eks /Users/Klaskan/Documents/RailsPro ")
+			n = raw_input("Navn Prosjekt: ")
+			ac = raw_input("action: ")
+			op = raw_input("options (dette kan vare flerer sider, bare husk mellomrom mellom dem: ")
+			rails_generate_controller(m, n, ac, op ) 
+			True
+		else:	
+			ac = raw_input("action: ")
+			op = raw_input("options (dette kan vare flerer sider, bare husk mellomrom mellom dem: ")
+			rails_generate_controller(m, n, ac, op ) 
+			True
+	elif newpro == "4":
+		
+		if len(m) == 0 or len(n) == 0:  
+			m = raw_input("Hvor skal jeg lagre prosjektet? eks /Users/Klaskan/Documents/RailsPro ")
+			n = raw_input("Navn Prosjekt: ")
+			git_log(m, n)
+		else:
+			git_log(m, n)
+
+	else:
+		print "Det du skrev inn er ikke stottet"
+		True
