@@ -20,7 +20,9 @@ def rails_generate_controller(mappe, navnProsjekt, action, options):
 	os.chdir(("%s/%s") % (mappe, navnProsjekt))
 	os.system("rails generate controller %s %s" % (action, options))
 
-
+def git_log():
+	os.system("git log")
+	#her kan du sette tilbake til tidligere versjoner med å skrive "git reset 1cfef3e9" de random tallene og bokstavene er de 8 første tall/bokstaver i commit-id
 
 
 
@@ -40,10 +42,10 @@ else:
 
 
 gencon = raw_input("Vil du generer en controller? y/n : ")
-if gencon == "y":
+if newpro == "y":
 	ac = raw_input("action: ")
 	op = raw_input("options (dette kan være flerer sider, bare husk mellomrom mellom dem: ")
 	rails_generate_controller(m, n, ac, op )
-
+elif: 
 else:
 	print "kk"
